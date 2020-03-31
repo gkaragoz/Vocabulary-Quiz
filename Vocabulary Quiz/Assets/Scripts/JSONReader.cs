@@ -1,20 +1,20 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class JSONReader : MonoBehaviour {
 
-    public Word[] words;
-    public Word testWord;
+    public string jsonFileName;
 
-    private void Start() {
-        Word word = new Word() {
-            en = "Pencil",
-            tr = "Kalem"
-        };
+    public string LoadResourceTextfile(string jsonFileName) {
+        TextAsset targetFile = Resources.Load<TextAsset>(jsonFileName);
 
-        string jsonString = JsonUtility.ToJson(word);
-        Debug.Log(jsonString);
+        return targetFile.text;
+    }
 
-        Word convertedFromJson = JsonUtility.FromJson<Word>(jsonString);
+    public List<Word> GetWords(string jsonString) {
+        ExportData exportedData = JsonUtility.FromJson<ExportData>(jsonString);
+
+        return exportedData.data;
     }
 
 }

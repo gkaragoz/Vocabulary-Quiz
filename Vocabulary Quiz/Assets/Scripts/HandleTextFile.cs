@@ -88,23 +88,5 @@ public class HandleTextFile : MonoBehaviour {
         System.IO.File.WriteAllText(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop) + "\\App\\testexport" + (_fileCounter++) + ".json", wordJson);
     }
 
-    [System.Serializable]
-    public class ExportData {
-        public List<Word> data;
-    }
-
-    [System.Serializable]
-    public class YandexResponse {
-        public int code;
-        public string lang;
-        public string[] text;
-
-        //       {
-        //"code": 200,
-        //"lang": "en-tr",
-        //"text": ["hakkında"]
-        //   }
-    }
-
 }
 #endif
