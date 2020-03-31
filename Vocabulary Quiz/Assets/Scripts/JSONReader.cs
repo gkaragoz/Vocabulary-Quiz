@@ -4,7 +4,7 @@ using UnityEngine;
 public class JSONReader : MonoBehaviour {
 
     [SerializeField]
-    private string jsonFileName;
+    private string jsonFileName = string.Empty;
 
     private string LoadResourceTextfile() {
         TextAsset targetFile = Resources.Load<TextAsset>(jsonFileName);
