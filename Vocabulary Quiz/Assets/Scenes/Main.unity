@@ -424,6 +424,9 @@ MonoBehaviour:
   - {fileID: 1613786396}
   - {fileID: 1637488256}
   - {fileID: 383254335}
+  _currentQuestion:
+    tr: 
+    en: 
 --- !u!1 &576414404
 GameObject:
   m_ObjectHideFlags: 0
@@ -1137,21 +1140,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1522577007}
     m_Modifications:
-    - target: {fileID: 4347522486533611688, guid: 781c2995592db6e4c82b0d2b9f02f3bc,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4347522486533611688, guid: 781c2995592db6e4c82b0d2b9f02f3bc,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4347522486533611688, guid: 781c2995592db6e4c82b0d2b9f02f3bc,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 4347522486533611689, guid: 781c2995592db6e4c82b0d2b9f02f3bc,
         type: 3}
       propertyPath: m_LocalPosition.x

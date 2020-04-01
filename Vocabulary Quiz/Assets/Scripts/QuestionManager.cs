@@ -22,10 +22,11 @@ public class QuestionManager : MonoBehaviour {
     [SerializeField]
     private QuestionAnswer[] _questionAnswers = null;
     [SerializeField]
-    private Word _currentQuestion = null;
+    private QuestionAnswer _currentQuestionAnswer = null;
 
     private JSONReader _jsonReader = null;
     private List<Word> _words = new List<Word>();
+    private bool _isReadyToNextQuestion = false;
 
     private void Start() {
         _jsonReader = GetComponent<JSONReader>();
@@ -35,38 +36,43 @@ public class QuestionManager : MonoBehaviour {
         SetNextQuestion();
     }
 
-    public void SetNextQuestion() {
-        _currentQuestion = SetRandomQuestion();
+    private void Update() {
+        if (Input.GetMouseButtonDown(0) && _isReadyToNextQuestion) {
+            SetNextQuestion();
+        }
     }
 
-    public Word SetRandomQuestion() {
+    public void SetNextQuestion() {
+        _isReadyToNextQuestion = false;
+
         int randomIndex = Random.Range(0, _words.Count);
-        Word correntWord = _words[randomIndex];
-        _txtQuestion.text = correntWord.en;
+        Word currentWord = _words[randomIndex];
+        _txtQuestion.text = currentWord.en;
 
         int randomCorrectButton = Random.Range(0, 4);
-        QuestionAnswer correctAnswer = _questionAnswers[randomCorrectButton];
+        _currentQuestionAnswer = _questionAnswers[randomCorrectButton];
 
         foreach (QuestionAnswer questionAnswer in _questionAnswers) {
-            if (questionAnswer == correctAnswer) {
-                questionAnswer.SetAnswer(correntWord);
+            if (questionAnswer == _currentQuestionAnswer) {
+                questionAnswer.SetAnswer(currentWord);
             } else {
                 Word falseWord = _words[RandomRangeExcept(0, _words.Count, randomIndex)];
                 questionAnswer.SetAnswer(falseWord);
             }
         }
-
-        return correntWord;
     }
 
-    public void OnAnswerClicked(Word word) {
-        if (_currentQuestion == word) {
-            Debug.Log("Bildin");
-        } else {
-            Debug.LogWarning("Bilemedin: " + _currentQuestion.tr);
+    public void OnAnswerClicked(QuestionAnswer questionAnswer) {
+        foreach (QuestionAnswer qa in _questionAnswers) {
+            if (_currentQuestionAnswer == qa) {
+                qa.SetAnswerGraphic(true);
+            } else {
+                questionAnswer.SetAnswerGraphic(false);
+                _currentQuestionAnswer.SetAnswerGraphic(true);
+            }
         }
 
-        SetNextQuestion();
+        _isReadyToNextQuestion = true;
     }
 
     private int RandomRangeExcept(int min, int max, int except) {
