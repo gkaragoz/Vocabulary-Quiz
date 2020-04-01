@@ -424,9 +424,7 @@ MonoBehaviour:
   - {fileID: 1613786396}
   - {fileID: 1637488256}
   - {fileID: 383254335}
-  _currentQuestion:
-    tr: 
-    en: 
+  _currentQuestionAnswer: {fileID: 0}
 --- !u!1 &576414404
 GameObject:
   m_ObjectHideFlags: 0
